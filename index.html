@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愛你的每一天 ❤️ 阮郁軒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #ff7675 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts animation */
+        .heart {
+            position: fixed;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 30px;
+            animation: float 10s infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cute-message {
+            font-size: 1.3em;
+            color: #e17055;
+            line-height: 1.8;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .emoji-rain {
+            font-size: 2em;
+            text-align: center;
+            margin: 20px 0;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .cute-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .cute-card {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transform: scale(1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cute-card:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .cute-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .special-text {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin: 30px 0;
+            animation: shimmer 2s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .love-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .love-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .love-button:active {
+            transform: translateY(-2px);
+        }
+
+        #confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            animation: confetti-fall 3s linear;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 20px;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .cute-message {
+                font-size: 1.1em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div id="hearts-container"></div>
+    
+    <!-- Confetti container -->
+    <div id="confetti-container"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>愛你的每一天 ❤️</h1>
+            <h2 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">親愛的 阮郁軒</h2>
+        </div>
+
+        <div class="message-box">
+            <div class="emoji-rain">
+                🌸 💕 🦄 🌈 ✨
+            </div>
+            
+            <p class="cute-message">
+                不只是520這一天，<br>
+                而是愛你的每一天！<br>
+                每個平凡的日子因為有你而變得特別，<br>
+                因為你喜歡可愛的東西，<br>
+                所以這個網站充滿了愛與可愛 🎀
+            </p>
+
+            <div class="special-text">
+                14歲的妳，青春洋溢，未來充滿無限可能！
+            </div>
+
+            <div class="cute-grid">
+                <div class="cute-card" onclick="showLove()">
+                    <div class="cute-icon">🧸</div>
+                    <p>可愛熊熊</p>
+                </div>
+                <div class="cute-card" onclick="showLove()">
+                    <div class="cute-icon">🌟</div>
+                    <p>閃亮星星</p>
+                </div>
+                <div class="cute-card" onclick="showLove()">
+                    <div class="cute-icon">🎀</div>
+                    <p>粉紅蝴蝶結</p>
+                </div>
+                <div class="cute-card" onclick="showLove()">
+                    <div class="cute-icon">🦋</div>
+                    <p>美麗蝴蝶</p>
+                </div>
+                <div class="cute-card" onclick="showLove()">
+                    <div class="cute-icon">🌺</div>
+                    <p>綻放花朵</p>
+                </div>
+                <div class="cute-card" onclick="showLove()">
+                    <div class="cute-icon">🎈</div>
+                    <p>繽紛氣球</p>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button class="love-button" onclick="celebration()">
+                    點我看驚喜！🎉
+                </button>
+            </div>
+
+            <!-- Display all the surprise images -->
+            <div id="surprise-images" style="display: none; text-align: center; margin-top: 20px;">
+                <img src="https://s7.ezgif.com/tmp/ezgif-725f28f8a567b.jpg" alt="Surprise" style="max-width: 100%; max-height: 400px; margin-bottom: 10px;">
+                
+                <img src="https://s7.ezgif.com/tmp/ezgif-7142370c73211.jpg" alt="Surprise" style="max-width: 100%; max-height: 400px; margin-bottom: 10px;">
+                <img src="https://s7.ezgif.com/tmp/ezgif-7440b6ac73287.jpg" alt="Surprise" style="max-width: 100%; max-height: 400px; margin-bottom: 10px;">
+                <img src="https://s7.ezgif.com/tmp/ezgif-7880819eb825b.jpg" alt="Surprise" style="max-width: 100%; max-height: 400px; margin-bottom: 10px;">
+                <img src="https://s7.ezgif.com/tmp/ezgif-7a50ed78685f2.jpg" alt="Surprise" style="max-width: 100%; max-height: 400px; margin-bottom: 10px;">
+                <img src="https://s7.ezgif.com/tmp/ezgif-7a652d4d1a13d.jpg" alt="Surprise" style="max-width: 100%; max-height: 400px; margin-bottom: 10px;">
+                
+                <img src="https://s7.ezgif.com/tmp/ezgif-7f2266dcf3414.jpg" alt="Surprise" style="max-width: 100%; max-height: 400px; margin-bottom: 10px;">
+                <img src="https://s7.ezgif.com/tmp/ezgif-7c237a2d7e7f5.jpg" alt="Surprise" style="max-width: 100%; max-height: 400px; margin-bottom: 10px;">
+                <img src="https://s7.ezgif.com/tmp/ezgif-7c1f043d238b6.jpg" alt="Surprise" style="max-width: 100%; max-height: 400px;">
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <p>專屬於 阮郁軒 的愛情網站 ❤️</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">每一天都愛你，永遠保持你的可愛與純真！</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            document.getElementById('hearts-container').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 10000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 2000);
+        
+        // Initial hearts
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 1000);
+        }
+
+        // Celebration function to show all images
+        function celebration() {
+            // Create confetti
+            const colors = ['#ff6b6b', '#ffeaa7', '#74b9ff', '#a29bfe', '#fd79a8'];
+            const confettiCount = 100;
+
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.getElementById('confetti-container').appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+
+            // Show all images at once
+            document.getElementById('surprise-images').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
